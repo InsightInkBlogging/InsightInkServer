@@ -1,6 +1,13 @@
 pipeline {
     agent any
     tools {nodejs "node"}
+    environment {
+        ACR_NAME = "bloggingplatformacrdev"  // Your ACR name
+        ACR_LOGIN_SERVER = "${ACR_NAME}.azurecr.io"  // ACR login server
+        DOCKER_IMAGE = "${ACR_LOGIN_SERVER}/insightink-server"  // Docker image name in ACR
+        DOCKER_TAG = "latest"  // You can use a different tag like ${env.BUILD_NUMBER}
+        ACR_CREDENTIALS = credentials('acr-admin-credentials')  // ACR admin credentials
+    }
     stages {
         stage('Build') {
             steps {
@@ -15,13 +22,29 @@ pipeline {
                 echo "Test not setup"
             }
         }
-        stage('Deploy') {
+        stage('Build Docker Image') {
             steps {
-                // Deploy to staging or production
-                // sh 'npm run deploy'
-                echo "Deployment not setup"
-                echo "Done"
-
+                script {
+                    // Build the Docker image
+                    sh """
+                    docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
+                    """
+                }
+            }
+        }
+        stage('Push to ACR') {
+            when {
+                expression { return params.PUSH_TO_DOCKER_HUB } // Only push if the parameter is true
+            }
+            steps {
+                script {
+                    // Log in to ACR using admin credentials
+                    sh """
+                    docker login ${ACR_LOGIN_SERVER} \
+                    -u ${ACR_CREDENTIALS_USR} \
+                    -p ${ACR_CREDENTIALS_PSW}
+                    """
+                }
             }
         }
     }
