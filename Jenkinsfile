@@ -12,6 +12,7 @@ pipeline {
             steps {
                 // Run tests
                 // sh 'npm test'
+                echo "Test not setup"
             }
         }
         stage('Deploy') {
