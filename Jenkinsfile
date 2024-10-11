@@ -18,7 +18,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy to staging or production
-                sh 'npm run deploy'
+                // sh 'npm run deploy'
+                echo "Deployment not setup"
             }
         }
     }
