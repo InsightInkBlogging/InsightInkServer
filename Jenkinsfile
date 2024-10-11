@@ -33,9 +33,6 @@ pipeline {
             }
         }
         stage('Push to ACR') {
-            when {
-                expression { return params.PUSH_TO_DOCKER_HUB } // Only push if the parameter is true
-            }
             steps {
                 script {
                     // Log in to ACR using admin credentials
