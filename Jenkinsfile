@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build your app
-                sh 'npm install'
+                sh 'npm i'
             }
         }
         stage('Test') {
