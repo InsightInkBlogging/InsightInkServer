@@ -20,6 +20,8 @@ pipeline {
                 // Deploy to staging or production
                 // sh 'npm run deploy'
                 echo "Deployment not setup"
+                echo "Done"
+
             }
         }
     }
