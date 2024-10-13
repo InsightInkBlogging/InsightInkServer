@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         nodejs "node"
-        docker "docker"
+        dockerTool "docker"
     }
     environment {
         ACR_NAME = "appacr"  // Your ACR name
