@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {nodejs "node"}
     environment {
-        ACR_NAME = "bloggingplatformacrdev"  // Your ACR name
+        ACR_NAME = "appacr"  // Your ACR name
         ACR_LOGIN_SERVER = "${ACR_NAME}.azurecr.io"  // ACR login server
         DOCKER_IMAGE = "${ACR_LOGIN_SERVER}/insightink-server"  // Docker image name in ACR
         DOCKER_TAG = "latest"  // You can use a different tag like ${env.BUILD_NUMBER}
