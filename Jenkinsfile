@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    tools {nodejs "node"}
+    tools {
+        nodejs "node"
+        docker "docker"
+    }
     environment {
         ACR_NAME = "appacr"  // Your ACR name
         ACR_LOGIN_SERVER = "${ACR_NAME}.azurecr.io"  // ACR login server
