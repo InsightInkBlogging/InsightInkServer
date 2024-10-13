@@ -20,7 +20,7 @@ spec:
         - name: acr-auth # Reference to the secret created
       containers:
         - name: insightink-server-container
-          image: appacr.azurecr.io/insightink-server:latest # Replace with your Docker image
+          image: appacr.azurecr.io/insightink-server:{{COMMIT_SHA}} # Docker image
           ports:
             - containerPort: 3000 # Port that your Node.js app is running on
           env:

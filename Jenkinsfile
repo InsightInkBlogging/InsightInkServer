@@ -8,12 +8,9 @@ pipeline {
         ACR_NAME = "appacr"  // Your ACR name
         ACR_LOGIN_SERVER = "${ACR_NAME}.azurecr.io"  // ACR login server
         DOCKER_IMAGE = "${ACR_LOGIN_SERVER}/insightink-server"  // Docker image name in ACR
-        DOCKER_TAG = "latest"  // You can use a different tag like ${env.BUILD_NUMBER}
         ACR_CREDENTIALS = credentials('acr-credentials')  // ACR admin credentials
-
         K8S_DEPLOYMENT_FILE = "deployment.yaml"
         K8S_NAMESPACE = "default"
-
         COMMIT_SHA = "${env.GIT_COMMIT}" 
     }
     stages {
@@ -35,7 +32,7 @@ pipeline {
                 script {
                     // Build the Docker image
                     sh """
-                    docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
+                    docker build -t ${DOCKER_IMAGE}:${COMMIT_SHA} .
                     """
                 }
             }
@@ -50,7 +47,7 @@ pipeline {
                     -p ${ACR_CREDENTIALS_PSW}
                     """
 
-                    sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker push ${DOCKER_IMAGE}:${COMMIT_SHA}"
                 }
             }
         }
