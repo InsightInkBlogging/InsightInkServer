@@ -28,6 +28,8 @@ const commentSchema = new mongoose.Schema(
 		timestamps: true,
 	}
 );
+commentSchema.index({ createdAt: 1 });
+commentSchema.index({ updatedAt: 1 });
 
 const commentModel = mongoose.model("Comment", commentSchema);
 module.exports = commentModel;

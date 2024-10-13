@@ -23,7 +23,8 @@ const blogSchema = new mongoose.Schema(
 	},
 	{ timestamps: true }
 );
-
+blogSchema.index({ createdAt: 1 });
+blogSchema.index({ updatedAt: 1 });
 blogSchema.statics.prepareData = async function (blog) {};
 
 const blogModel = mongoose.model("Blog", blogSchema);

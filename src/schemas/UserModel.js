@@ -35,6 +35,9 @@ const userSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
+userSchema.index({ createdAt: 1 });
+userSchema.index({ updatedAt: 1 });
+
 //check user password and username and return the user if valid or return false if invalid
 // userSchema.statics.validateUser = async function (username, password) {
 // 	const foundUser = await this.findOne({ username });
