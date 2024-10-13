@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: insightink-server-container
-          image: appacr.azurecr.io/insightink-server:latest # Replace with your Docker image
+          # image: appacr.azurecr.io/insightink-server:latest # Replace with your Docker image
+          image: hello-world:latest
           ports:
             - containerPort: 3000 # Port that your Node.js app is running on
           env:
