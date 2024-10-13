@@ -45,7 +45,7 @@ pipeline {
                     -p ${ACR_CREDENTIALS_PSW}
                     """
 
-                    sh "docker push ${ACR_LOGIN_SERVER}/${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
