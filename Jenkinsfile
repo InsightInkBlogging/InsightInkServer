@@ -10,6 +10,9 @@ pipeline {
         DOCKER_IMAGE = "${ACR_LOGIN_SERVER}/insightink-server"  // Docker image name in ACR
         DOCKER_TAG = "latest"  // You can use a different tag like ${env.BUILD_NUMBER}
         ACR_CREDENTIALS = credentials('acr-credentials')  // ACR admin credentials
+
+        K8S_DEPLOYMENT_FILE = "deployment.yaml"
+        K8S_NAMESPACE = "default"
     }
     stages {
         stage('Build') {
@@ -46,6 +49,16 @@ pipeline {
                     """
 
                     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                }
+            }
+        }
+       stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: 'kube-config', variable: 'KUBECONFIG')]) {
+                        // Apply the Kubernetes deployment using kubectl
+                        sh "kubectl --kubeconfig=${KUBECONFIG} apply -f ${K8S_DEPLOYMENT_FILE}"
+                    }
                 }
             }
         }

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insightink-server-deployment
+  labels:
+    app: insightink-server
+spec:
+  replicas: 3 # Number of pod replicas
+  selector:
+    matchLabels:
+      app: insightink-server
+  template:
+    metadata:
+      labels:
+        app: insightink-server
+    spec:
+      containers:
+        - name: insightink-server-container
+          image: appacr.azurecr.io/insightink-server:latest # Replace with your Docker image
+          ports:
+            - containerPort: 3000 # Port that your Node.js app is running on
+          env:
+            - name: NODE_ENV
+              value: "production" # Set Node.js environment to production
+            - name: DB_HOST
+              value: "your-database-host" # Example environment variable for database connection
+            - name: DB_USERNAME
+              value: "your-database-user"
+            - name: DB_PASSWORD
+              value: "your-database-password"
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: insightink-server-service
+spec:
+  selector:
+    app: insightink-server
+  ports:
+    - protocol: TCP
+      port: 80 # Port exposed by the service
+      targetPort: 3000 # Port exposed by the container (from the containerPort)
+  type: LoadBalancer # Expose the service via a load balancer (use NodePort for internal access)
