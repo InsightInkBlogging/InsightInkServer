@@ -14,6 +14,8 @@ spec:
       labels:
         app: insightink-server
     spec:
+      imagePullSecrets:
+        - name: acr-auth # Reference to the secret created
       containers:
         - name: insightink-server-container
           image: appacr.azurecr.io/insightink-server:latest # Replace with your Docker image
