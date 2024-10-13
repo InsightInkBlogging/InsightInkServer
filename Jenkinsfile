@@ -6,7 +6,7 @@ pipeline {
         ACR_LOGIN_SERVER = "${ACR_NAME}.azurecr.io"  // ACR login server
         DOCKER_IMAGE = "${ACR_LOGIN_SERVER}/insightink-server"  // Docker image name in ACR
         DOCKER_TAG = "latest"  // You can use a different tag like ${env.BUILD_NUMBER}
-        ACR_CREDENTIALS = credentials('acr-admin-credentials')  // ACR admin credentials
+        ACR_CREDENTIALS = credentials('acr-credentials')  // ACR admin credentials
     }
     stages {
         stage('Build') {
