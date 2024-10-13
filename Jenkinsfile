@@ -58,6 +58,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'kube-config', variable: 'KUBECONFIG')]) {
                         // Apply the Kubernetes deployment using kubectl
                         sh "kubectl --kubeconfig=${KUBECONFIG} apply -f ${K8S_DEPLOYMENT_FILE}"
+                        sh "kubectl --kubeconfig=${KUBECONFIG} rollout"
                     }
                 }
             }
