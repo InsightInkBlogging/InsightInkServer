@@ -61,6 +61,7 @@ pipeline {
                         // Apply the Kubernetes deployment using kubectl
                         sh"""
                             sed -i 's/{{COMMIT_SHA}}/${COMMIT_SHA}/g' ${K8S_DEPLOYMENT_FILE}
+                            cat ${K8S_DEPLOYMENT_FILE}
                         """
                         sh "kubectl --kubeconfig=${KUBECONFIG} apply -f ${K8S_DEPLOYMENT_FILE}"
                     }
