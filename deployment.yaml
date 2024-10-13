@@ -24,12 +24,8 @@ spec:
           env:
             - name: NODE_ENV
               value: "production" # Set Node.js environment to production
-            - name: DB_HOST
-              value: "your-database-host" # Example environment variable for database connection
-            - name: DB_USERNAME
-              value: "your-database-user"
-            - name: DB_PASSWORD
-              value: "your-database-password"
+            - name: DATABASE_URI
+              value: "mongodb://cosmosdb-account-58075:SP4nnZSNDyEAPzaQ98B2LxrXDV9fsQJ3VEJ8wMjl6DyWLVIejVDaX35kAtiddqTOwAyxKrSJDsj5ACDbeM5znw==@cosmosdb-account-58075.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@cosmosdb-account-58075@" # Example environment variable for database connection
           resources:
             limits:
               memory: "512Mi"
