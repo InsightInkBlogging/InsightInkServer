@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
 module.exports = async function sendMail(message, subject, toEmail) {
 	console.log("Sending to: " + toEmail);
 	const mail = {
-		senderAddress: `insightink@${process.env.MAIL_ENDPOINT}`,
+		senderAddress: `DoNotReply@${process.env.MAIL_ENDPOINT}`,
 		content: {
 			subject: subject,
 			plainText: message,
