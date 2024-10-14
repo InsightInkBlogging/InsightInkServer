@@ -1,5 +1,9 @@
 const nodemailer = require("nodemailer");
 
+const { EmailClient } = require("@azure/communication-email");
+const connectionString = process.env.MAIL_CONNECTION_STRING;
+const client = new EmailClient(connectionString);
+
 const transporter = nodemailer.createTransport({
 	host: process.env.MAIL_ENDPOINT,
 	secure: false,
@@ -20,5 +24,22 @@ module.exports = async function sendMail(message, subject, toEmail) {
 		subject: subject,
 		html: message,
 	};
-	return await transporter.sendMail(mailOptions);
+
+	const mail = {
+		senderAddress: `insightink@${process.env.MAIL_ENDPOINT}`,
+		content: {
+			subject: subject,
+			plainText: message,
+		},
+		recipients: {
+			to: [
+				{
+					address: toEmail,
+				},
+			],
+		},
+	};
+	const poller = await emailClient.beginSend(mail);
+	return;
+	// return await transporter.sendMail(mailOptions);
 };
