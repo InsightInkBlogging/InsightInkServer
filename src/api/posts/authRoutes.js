@@ -84,7 +84,7 @@ router.post("/register", async (req, res) => {
 		const token = await getEmailToken(username, password, email, name);
 		console.log("Email token fetched");
 		await sendMail(
-			`<p>Click <a href="${process.env.CLIENT_DOMAIN}/activate?token=${token}">here</a> to activate your account</p>`,
+			`<p>Click <a href="${process.env.CLIENT_DOMAIN}/#/activate?token=${token}">here</a> to activate your account</p>`,
 			"[Activation Link]",
 			email
 		);
@@ -133,7 +133,7 @@ router.post("/getresetpasswordlink/", async (req, res) => {
 
 		//send the mail with pwdreset token.
 		await sendMail(
-			`<p>Click <a href="http://localhost:5173/resetpassword?token=${pwdResetToken}">here</a> to reset your password</p>`,
+			`<p>Click <a href="${process.env.CLIENT_DOMAIN}/#/resetpassword?token=${pwdResetToken}">here</a> to reset your password</p>`,
 			"[Password Reset Link]",
 			email
 		);

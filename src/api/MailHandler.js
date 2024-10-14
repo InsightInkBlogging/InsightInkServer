@@ -22,7 +22,7 @@ module.exports = async function sendMail(message, subject, toEmail) {
 		senderAddress: `DoNotReply@${process.env.MAIL_ENDPOINT}`,
 		content: {
 			subject: subject,
-			plainText: message,
+			html: message,
 		},
 		recipients: {
 			to: [
