@@ -98,7 +98,9 @@ const updatePassword = async function (email, newPassword, passwordVersion) {
 	return true;
 };
 const getEmailToken = async (username, password, email, name) => {
+	console.log("Hashing password");
 	password = await hashPassword(password);
+	console.log("Hashed password");
 	const emailToken = sign(
 		{ username, password, email, name },
 		process.env.JWT_SECRET,
@@ -106,6 +108,7 @@ const getEmailToken = async (username, password, email, name) => {
 			expiresIn: "1d",
 		}
 	);
+	console.log("Email token signed");
 	return emailToken;
 };
 const getResetPasswordToken = async (email) => {
