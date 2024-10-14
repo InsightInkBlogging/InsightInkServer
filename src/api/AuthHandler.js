@@ -4,7 +4,7 @@ const userModel = require("../schemas/UserModel");
 const { deleteOne } = require("../schemas/RegisterConfirmationModel");
 const registrationModel = require("../schemas/RegisterConfirmationModel");
 const { isEmailActive } = require("../schemas/Controller");
-const { hash, compare } = require("bcrypt");
+const { hash, compare } = require("bcryptjs");
 const PasswordValidator = require("password-validator");
 
 const authenticateRequest = async (req, res, next) => {
