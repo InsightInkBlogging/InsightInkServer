@@ -45,6 +45,6 @@ spec:
     app: insightink-server
   ports:
     - protocol: TCP
-      port: 443 # Port exposed by the service
+      port: 80 # Port exposed by the service
       targetPort: 3000 # Port exposed by the container (from the containerPort)
   type: LoadBalancer # Expose the service via a load balancer (use NodePort for internal access)
