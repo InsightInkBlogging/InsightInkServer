@@ -32,6 +32,8 @@ spec:
               value: DEV_SECRET
             - name: MAIL_CONNECTION_STRING
               value: endpoint=https://app-com-service.india.communication.azure.com/;accesskey=DdHsGRc04R0NX5ufbOYnSgd2AxkbyMKgKLnFqFv9dDknMz1xdCI2JQQJ99AJACULyCpZVC32AAAAAZCSWRRD
+            - name: MAIL_ENDPOINT
+              value: 554323be-71c7-4299-8bc9-9e533c220f38.azurecomm.net
             - name: CLIENT_DOMAIN
               value: https://happy-bay-041cccf00-preview.eastasia.5.azurestaticapps.net
             - name: CLOUDINARY_NAME
