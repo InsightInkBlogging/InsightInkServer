@@ -18,13 +18,6 @@ const transporter = nodemailer.createTransport({
 
 module.exports = async function sendMail(message, subject, toEmail) {
 	console.log("Sending to: " + toEmail);
-	const mailOptions = {
-		from: `insightink@${process.env.MAIL_ENDPOINT}`,
-		to: toEmail,
-		subject: subject,
-		html: message,
-	};
-
 	const mail = {
 		senderAddress: `insightink@${process.env.MAIL_ENDPOINT}`,
 		content: {
@@ -39,7 +32,7 @@ module.exports = async function sendMail(message, subject, toEmail) {
 			],
 		},
 	};
-	const poller = await emailClient.beginSend(mail);
+	const poller = await client.beginSend(mail);
 	return;
 	// return await transporter.sendMail(mailOptions);
 };
