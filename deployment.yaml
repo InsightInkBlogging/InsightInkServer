@@ -28,6 +28,20 @@ spec:
               value: "production" # Set Node.js environment to production
             - name: DATABASE_URI
               value: "mongodb://cosmosdb-account-58075:SP4nnZSNDyEAPzaQ98B2LxrXDV9fsQJ3VEJ8wMjl6DyWLVIejVDaX35kAtiddqTOwAyxKrSJDsj5ACDbeM5znw==@cosmosdb-account-58075.mongo.cosmos.azure.com:10255/insightink_db?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@cosmosdb-account-58075@" # Example environment variable for database connection
+            - name: JWT_SECRET
+              value: DEV_SECRET
+            - name: SMTP_USERNAME
+              value: test
+            - name: SMTP_PASSWORD
+              value: test
+            - name: CLIENT_DOMAIN
+              value: https://happy-bay-041cccf00-preview.eastasia.5.azurestaticapps.net
+            - name: CLOUDINARY_NAME
+              value: test
+            - name: CLOUDINARY_API_KEY
+              value: test
+            - name: CLOUDINARY_API_SECRET
+              value: test
           resources:
             limits:
               memory: "512Mi"
