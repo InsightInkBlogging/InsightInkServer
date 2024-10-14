@@ -30,10 +30,12 @@ spec:
               value: "mongodb://cosmosdb-account-58075:SP4nnZSNDyEAPzaQ98B2LxrXDV9fsQJ3VEJ8wMjl6DyWLVIejVDaX35kAtiddqTOwAyxKrSJDsj5ACDbeM5znw==@cosmosdb-account-58075.mongo.cosmos.azure.com:10255/insightink_db?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@cosmosdb-account-58075@" # Example environment variable for database connection
             - name: JWT_SECRET
               value: DEV_SECRET
+            - name: MAIL_ENDPOINT
+              value: 554323be-71c7-4299-8bc9-9e533c220f38.azurecomm.net
             - name: SMTP_USERNAME
-              value: test
+              value: apikey
             - name: SMTP_PASSWORD
-              value: test
+              value: DdHsGRc04R0NX5ufbOYnSgd2AxkbyMKgKLnFqFv9dDknMz1xdCI2JQQJ99AJACULyCpZVC32AAAAAZCSWRRD
             - name: CLIENT_DOMAIN
               value: https://happy-bay-041cccf00-preview.eastasia.5.azurestaticapps.net
             - name: CLOUDINARY_NAME
