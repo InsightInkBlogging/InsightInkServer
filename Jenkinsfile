@@ -27,6 +27,12 @@ pipeline {
                 echo "Test not setup"
             }
         }
+
+        stage('Dependency Check'){
+            steps{
+                dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'DP-Check'
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
