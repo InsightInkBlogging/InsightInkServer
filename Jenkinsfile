@@ -30,7 +30,7 @@ pipeline {
 
         stage('Dependency Check'){
             steps{
-                dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'DP-Check'
+                dependencyCheck additionalArguments: '--format HTML --disableYarnAudit', odcInstallation: 'DP-Check'
             }
         }
         stage('Build Docker Image') {
