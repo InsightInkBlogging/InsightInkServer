@@ -1,6 +1,29 @@
 const app = require("./app");
 require("dotenv").config();
 const mongoose = require("mongoose");
+const winston = require("winston");
+const LogstashTransport = require("winston-logstash/lib/winston-logstash-latest");
+
+const path = require("path");
+
+const winston = require("winston");
+const LogstashTransport = require("winston-logstash/lib/winston-logstash-latest");
+
+const logger = winston.createLogger({
+	transports: [
+		new LogstashTransport({
+			port: 28777,
+			node_name: "my node name",
+			host: "127.0.0.1",
+		}),
+	],
+});
+
+// Example log entries
+logger.info("App is starting...");
+logger.error("An error occurred");
+
+module.exports = logger;
 
 // const uri = `mongodb+srv://arghadeep:${process.env.DB_PWD}@cluster0.nm8klgn.mongodb.net/?retryWrites=true&w=majority`;
 // const uri = `mongodb://root:Chicken399@blogging-db-cluster.cluster-cl624q08ms6x.ap-south-1.docdb.amazonaws.com:27017/?tls=true&tlsCAFile=global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false`;
